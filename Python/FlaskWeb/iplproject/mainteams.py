@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import sqlite3
 
 app = Flask(__name__)
 
@@ -102,6 +103,15 @@ def addpalyer():
       pn=request.form['name']
       ids=request.form['idname']
       ty=request.form['tname']
+      with sqlite3.connect("database.db") as con:
+         cur = con.cursor()
+         ct = "CREATE TABLE IF NOT EXISTS {} (name VARCHAR(20), pass VARCHAR(20))".format(
+            pn)  # CREATE TABLES DYNAMICALLY IN SQLite3
+         cur.execute(ct)
+         cur.execute("INSERT into {}(name,pass) values (?,?)".format(pn),
+                     (ids, ty))  # INSERT VALUES DYNAMICALLY IN SQLite3
+         con.commit()
+   return render_template("homepage.html")
 
 if __name__ == '__main__':
    app.run(debug = True)

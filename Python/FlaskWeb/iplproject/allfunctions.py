@@ -5,6 +5,8 @@ class iplwebsite:
         self.con = sqlite3.connect('database.db')
         self.cursor = self.con.cursor()
 
+
+
     def database(self,u,key,val):
         with sqlite3.connect("database.db") as con:
             cur = con.cursor()
