@@ -24,16 +24,18 @@ class al(views.View):
             k = []
             j=[]
             idd=1
-            # j = expenditure.objects.all()
+
+            j = expenditure.objects.all()
+            return HttpResponse(j[1].money_spent)
             # q1 = expenditure.objects.all()
-            for p in expenditure.objects.raw("SELECT * FROM expenditures_expenditure where id=1"):
-                k.append(p)
-            for each in k:
-                a = {"loan": each.loan_link_id, "chain":each.chain_link_id, "income":each.income_link_id, "returns":each.returns_link_id, "withdraw":each.withdraw_link_id, "id": each.id, "expensive": each.expense_link, "money_spent": each.money_spent,
-                     "money_source": each.money_source, "expense_category": each.expense_category,
-                     "description": each.description, "purchase_date": each.purchase_date}
-                j.append(a)
-            return JsonResponse({"data": j})
+            # for p in expenditure.objects.raw("SELECT * FROM expenditures_expenditure where id=1"):
+            #     k.append(p)
+            # for each in k:
+            #     a = {"loan": each.loan_link_id, "chain":each.chain_link_id, "income":each.income_link_id, "returns":each.returns_link_id, "withdraw":each.withdraw_link_id, "id": each.id, "expensive": each.expense_link, "money_spent": each.money_spent,
+            #          "money_source": each.money_source, "expense_category": each.expense_category,
+            #          "description": each.description, "purchase_date": each.purchase_date}
+            #     j.append(a)
+            # return JsonResponse({"data": j})
             # for e in expenditure.objects.all():
             #     k.append(e.id)
             # for e in expenditure.objects.all():
